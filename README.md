@@ -64,26 +64,27 @@ $ sudo nano /etc/security/limits.conf
 $ sudo nano /etc/pam.d/common-session
 ```
 > session required	pam_limits.so
-<br> **END NOTE STEP**
+
+**END NOTE STEP**
 ```
 $ sudo nano /etc/systemd/system/ark-dedicated.service
 ```
-> [Unit]
-> Description=ARK: Survival Evolved dedicated server
-> Wants=network-online.target
-> After=syslog.target network.target nss-lookup.target network-online.target
-> 
-> [Service]
-> ExecStartPre=/home/[new server user]/Steam/steamcmd +force_install_dir ./ark +login anonymous +app_update 376030 +quit
-> ExecStart=/home/[new server user]/Steam/ark/ShooterGame/Binaries/Linux/ShooterGameServer TheIsland?listen -automanagedmods -server -log
-> WorkingDirectory=/home/[new server user]/Steam/ark/ShooterGame/Binaries/Linux
-> LimitNOFILE=100000
-> ExecReload=/bin/kill -s HUP $MAINPID
-> ExecStop=/bin/kill -s INT $MAINPID
-> User=[new server user]
-> Group=[new server user]
-> 
-> [Install]
+> [Unit] <br>
+> Description=ARK: Survival Evolved dedicated server <br>
+> Wants=network-online.target <br>
+> After=syslog.target network.target nss-lookup.target network-online.target <br>
+>  <br>
+> [Service] <br>
+> ExecStartPre=/home/[new server user]/Steam/steamcmd +force_install_dir ./ark +login anonymous +app_update 376030 +quit <br>
+> ExecStart=/home/[new server user]/Steam/ark/ShooterGame/Binaries/Linux/ShooterGameServer TheIsland?listen -automanagedmods -server -log <br>
+> WorkingDirectory=/home/[new server user]/Steam/ark/ShooterGame/Binaries/Linux <br>
+> LimitNOFILE=100000 <br>
+> ExecReload=/bin/kill -s HUP $MAINPID <br>
+> ExecStop=/bin/kill -s INT $MAINPID <br>
+> User=[new server user] <br>
+> Group=[new server user] <br>
+>  <br>
+> [Install] <br>
 > WantedBy=multi-user.target
 ```
 $ sudo systemctl enable ark-dedicated
